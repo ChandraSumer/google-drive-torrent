@@ -89,7 +89,15 @@ app.get('/home', (req, res) => {
         res.render('index.pug', options);
    });    
 });
-
+app.get('/privacy-policy', (req, res) => {
+   unlessLoggedIn(req, res, () => {
+        const options = {};
+        if ('error' in req.query) {
+            options.error = req.query.error;
+        }
+        res.render('privacy-policy.pug', options);
+   });    
+});
 
 app.get('/dashboard', (req, res) => {
     ifLoggedIn(req, res, () => {
